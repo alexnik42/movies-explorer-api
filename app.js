@@ -29,6 +29,7 @@ app.use(
   cors({
     origin: [
       'https://movies-explorer.alexnik42.students.nomoredomains.monster',
+      'http://localhost:3000',
     ],
     credentials: true,
   }),

@@ -100,7 +100,8 @@ exports.logout = (req, res, next) => {
       .cookie('jwt', '', {
         maxAge: -1,
         httpOnly: true,
-        sameSite: true,
+        sameSite: 'none',
+        secure: true,
       })
       .send({ message: messages.LOGOUT });
   } catch (err) {

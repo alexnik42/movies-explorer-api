@@ -87,7 +87,8 @@ exports.login = (req, res, next) => {
         .cookie('jwt', token, {
           maxAge: 604800000,
           httpOnly: true,
-          sameSite: true,
+          sameSite: 'none',
+          secure: true,
         })
         .send(currentUser);
     })

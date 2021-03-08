@@ -2,7 +2,6 @@ const Movie = require('../models/movie');
 const { errorMessages } = require('../utils/constants');
 const NotFoundError = require('../utils/errors/NotFoundError');
 const BadRequestError = require('../utils/errors/BadRequestError');
-const ForbiddenError = require('../utils/errors/ForbiddenError');
 
 exports.getAllMovies = (req, res, next) => {
   Movie.find({ owner: req.user._id })
@@ -55,7 +54,7 @@ exports.addMovie = (req, res, next) => {
 };
 
 exports.deleteMovie = (req, res, next) => {
-  Movie.find(
+  Movie.findOne(
     {
       movieId: req.params.movieId,
       owner: req.user._id,
@@ -65,9 +64,6 @@ exports.deleteMovie = (req, res, next) => {
     .then((movie) => {
       if (!movie) {
         throw new BadRequestError(errorMessages.WRONG_MOVIE_ID);
-      }
-      if (movie.owner.toString() !== req.user._id.toString()) {
-        throw new ForbiddenError(errorMessages.FORBIDDEN);
       }
       const deletedMovie = movie;
       movie.remove();

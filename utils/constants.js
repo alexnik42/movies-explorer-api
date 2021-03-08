@@ -21,6 +21,6 @@ exports.errorMessages = {
 
 exports.messages = {
   MOVIE_DELETED: 'Фильм успешно удален',
-  LOGOUT: 'Выход из аккаунта',
+  LOGOUT: 'Осуществлен выход из аккаунта',
   SERVER_ERROR: 'На сервере произошла ошибка',
 };

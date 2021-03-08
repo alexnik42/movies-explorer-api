@@ -55,7 +55,12 @@ exports.addMovie = (req, res, next) => {
 };
 
 exports.deleteMovie = (req, res, next) => {
-  Movie.findById(req.params.movieId)
+  Movie.find(
+    {
+      movieId: req.params.movieId,
+      owner: req.user._id,
+    },
+  )
     .select('+owner')
     .then((movie) => {
       if (!movie) {
